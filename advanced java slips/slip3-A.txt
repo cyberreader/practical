@@ -1,0 +1,68 @@
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class PrimeServer {
+    public static void main(String args[])throws Exception {
+        ServerSocket ss=new ServerSocket(3333);
+        Socket s=ss.accept();
+        DataInputStream din=new DataInputStream(s.getInputStream());
+        DataOutputStream dout=new DataOutputStream(s.getOutputStream());
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("server here..");
+        String str="",str2="";
+        str=din.readUTF();
+        int n=Integer.parseInt(str);
+        System.out.println("given no is: "+n);
+        int i,m=0,flag=0;
+        m=n/2;
+        if(n==0||n==1){
+            dout.writeUTF(n+" is not prime number");
+            System.out.println(n+" is not prime number");
+        }else{
+            for(i=2;i<=m;i++){
+                if(n%i==0){
+                    dout.writeUTF(n+" is not prime number");
+                    System.out.println(n+" is not prime number");
+                    flag=1;
+                    break;
+                }
+            }
+            dout.writeUTF(n+" is prime number");
+            if(flag==0)  { System.out.println(n+" is prime number"); }
+        }//end of else
+        dout.flush();
+        din.close();
+        s.close();
+        ss.close();
+    }
+}
+
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.Socket;
+
+
+public class PrimeClient {
+    public static void main(String args[]) throws Exception {
+        Socket s = new Socket("localhost", 3333);
+        DataInputStream din = new DataInputStream(s.getInputStream());
+        DataOutputStream dout = new DataOutputStream(s.getOutputStream());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("enter any number");
+        String str = "", str2 = "";
+        str = br.readLine();
+        dout.writeUTF(str);
+        dout.flush();
+        str2 = din.readUTF();
+        System.out.println(str2);
+        dout.close();
+        s.close();
+    }
+}

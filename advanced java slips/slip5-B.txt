@@ -1,0 +1,78 @@
+import java.applet.Applet;
+import java.awt.*;
+
+public class Signal extends Applet implements Runnable {
+    int i,j;
+    Thread t;
+    int timeOfSignal,signalColor;
+
+    public void init() {
+        timeOfSignal=90;signalColor=0;
+        t=new Thread(this);
+        t.start();
+    }
+    public void run() {
+        try{
+            if (signalColor==0){
+                for (j=0;j<90;j++){
+                    timeOfSignal=timeOfSignal-1;
+                    Thread.sleep(500);
+                    repaint();
+                }
+                signalColor=1;
+                timeOfSignal=15;
+            }
+            if(signalColor==1){
+                for (j=0;j<15;j++){
+                    timeOfSignal=timeOfSignal-1;
+                    Thread.sleep(500);
+                    repaint();
+                }
+                signalColor=2;
+                timeOfSignal=90;
+            }
+            if(signalColor==2){
+                for (j=0;j<90;j++){
+                    timeOfSignal=timeOfSignal-1;
+                    Thread.sleep(500);
+                    repaint();
+                }
+                signalColor=0;
+                timeOfSignal=90;
+            }
+            if (i==0) {
+                run();
+            }
+        }
+        catch(Exception e) {
+        }
+    }
+
+    public void paint(Graphics g) {
+        g.drawOval(100,100,100,100);
+        g.drawOval(100,225,100,100);
+        g.drawOval(100,350,100,100);
+        g.setFont(new Font("",Font.PLAIN,24));
+        g.drawString(String.valueOf(timeOfSignal),400,150);
+
+        if(signalColor==0&&!(j==90)){
+            g.setColor(Color.red);
+            g.fillOval(100,100,100,100);
+            g.drawOval(100,100,100,100);
+            g.drawString("stop",400,430);
+        }
+        if(signalColor==1&&!(j==15)) {
+            g.setColor(Color.yellow);
+            g.fillOval(100, 225, 100, 100);
+            g.drawOval(100, 225, 100, 100);
+            g.drawString("slow", 400, 430);
+        }
+        if (signalColor==2&&!(j==90)) {
+            g.setColor(Color.green);
+            g.fillOval(100,350,100,100);
+            g.drawOval(100,350,100,100);
+            g.drawString("go",400,430);
+        }
+    }
+}
+/*<applet code= "Signal.class" height="600" width="600"></applet>*/

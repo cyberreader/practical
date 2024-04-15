@@ -1,0 +1,26 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class Slip7Q2 implements Runnable{
+    static TextArea textArea;
+    public static void main(String[] args) {
+        JFrame mainframe = new JFrame("Display the number from 1 to 100");
+        textArea = new TextArea();
+        textArea.setBounds(10, 30, 300, 300);
+        mainframe.add(textArea);
+        mainframe.setSize(500, 500);
+        mainframe.setLayout(null);
+        mainframe.setVisible(true);
+        mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Slip7Q2 obj = new Slip7Q2();
+        Thread t1 = new Thread(obj);
+        t1.start();
+    }
+
+    @Override
+    public void run() {
+        for (int i = 1; i<=100; i++){
+            textArea.append(String.valueOf(i)+"\n");
+        }
+    }
+}

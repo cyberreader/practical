@@ -1,0 +1,21 @@
+import java.net.*;
+import java.io.*;
+import java.util.*;
+import java.net.InetAddress;
+public class slip11A
+{
+   public static void main(String args[]) throws Exception{
+      InetAddress my_localhost = InetAddress.getLocalHost();
+      System.out.println("The IP Address of client is : " + (my_localhost.getHostAddress()).trim());
+      String my_system_address = "";
+      try{
+         URL my_url = new URL("http://bot.whatismyipaddress.com");
+         BufferedReader my_br = new BufferedReader(new
+         InputStreamReader(my_url.openStream()));
+         my_system_address = my_br.readLine().trim();
+      }
+      catch (Exception e){
+         my_system_address = "Cannot Execute Properly";
+      }
+   }
+}

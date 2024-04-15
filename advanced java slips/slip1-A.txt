@@ -1,0 +1,33 @@
+
+import java.applet.Applet;
+import java.awt.*;
+
+
+public class Slip1Q1 extends Applet implements Runnable{
+    String banner="Hello I am Groot";
+    Thread t = null;
+    int x;
+    public void paint(Graphics g) {
+        Font a = new Font("Impact",Font.BOLD,14);
+        g.setFont(a);
+        g.drawString(banner, x, 100);
+    }
+    public void start() {
+        t = new Thread( this );
+        t.start();
+    }
+    public void init(){
+        setBackground(Color.black);
+        setForeground(Color.green);
+    }
+    @Override
+    public void run() {
+        try {
+            for(int i =0;i<400;i++){
+                repaint(10);
+                x=i;
+                Thread.sleep( 100);
+            }
+        }catch (Exception ignored){}
+    }
+}

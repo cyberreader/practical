@@ -1,0 +1,25 @@
+class Slip13Q1 extends Thread{
+    @Override
+    public void run() {
+        System.out.println("Current thread is "+getName());
+    }
+    public static void main(String[] args) {
+        Slip13Q1 thread1 = new Slip13Q1();
+        thread1.setName("first thread");
+        Slip13Q1 thread2 = new Slip13Q1();
+        thread2.setName("second thread");
+        Slip13Q1 thread3 = new Slip13Q1();
+        thread3.setName("third thread");
+        Slip13Q1 thread4 = new Slip13Q1();
+        thread4.setName("fourth thread");
+        Slip13Q1 thread5 = new Slip13Q1();
+        thread5.setName("fifth thread");
+
+        thread1.run();
+        thread2.run();
+        thread3.run();
+        thread4.run();
+        thread5.run();
+    }
+}
+

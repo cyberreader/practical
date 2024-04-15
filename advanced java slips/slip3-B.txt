@@ -1,0 +1,56 @@
+import java.applet.Applet;
+import java.awt.*;
+import java.util.Random;
+
+public class Slip3Q2 extends Applet implements Runnable {
+    Thread t;
+    int moveSide, yAxis;
+    boolean sideChanged=false;
+    private int rCode=0,gCode=0,bCode=0;
+
+    public void init(){
+        t=new Thread(this);
+        t.start();
+        moveSide=0;  yAxis=0;
+    }
+    public void run() {
+        try{
+            if (moveSide==0){
+                Thread.sleep(10);
+                yAxis=yAxis+5;
+                repaint();
+            }
+            if(moveSide==1) {
+                Thread.sleep(10);
+                yAxis=yAxis-5;
+                repaint();
+            }
+        }catch(Exception ignored){ }
+        run();
+    }
+    public void paint(Graphics g) {
+        if(moveSide==0) {
+            g.setColor(new Color(rCode,gCode,bCode));
+            g.fillOval(150,yAxis+10,20,20);
+            if(yAxis==400) {
+                Random random = new Random();
+                rCode = random.nextInt(256);
+                gCode = random.nextInt(256);
+                bCode = random.nextInt(256);
+                moveSide=1;
+            }
+        }if(moveSide==1) {
+            g.setColor(new Color(rCode,gCode,bCode));
+            g.fillOval(150,yAxis-10,20,20);
+            if(yAxis==0) {
+                Random random = new Random();
+                rCode = random.nextInt(256);
+                gCode = random.nextInt(256);
+                bCode = random.nextInt(256);
+                moveSide=0;
+            }
+        }
+    }
+}
+/*<applet code="Slip3Q2.class" height=400 width=350></applet>*/
+
