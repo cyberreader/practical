@@ -1,0 +1,34 @@
+slip 7 A
+protected void Button1_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int no = Convert.ToInt32(TextBox1.Text);
+            
+            int sum = 0;
+
+            for (int i = 1; i < no; i++)
+            {
+                if (no % i == 0)
+                {
+                    sum = sum + i;
+                }
+            }
+
+            if (sum == no)
+            {
+                Response.Write("Perfect Number");
+            }
+            else
+            {
+                Response.Write("Not a Perfect Number");
+            }
+        }
+        catch (Exception ex)
+        {
+            Response.Write("Please enter correct integer number");
+            TextBox1.Text = "";
+            TextBox1.Focus();
+        }
+    }
+

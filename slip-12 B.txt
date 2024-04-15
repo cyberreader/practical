@@ -1,0 +1,37 @@
+slip 12 A
+Imports System.Data
+Imports System.Data.SqlClient
+
+Public Class Form1
+    Dim con As New SqlConnection("Data Source=.\sqlexpress;Initial Catalog=tybba;Integrated Security=True;Pooling=False")
+    Dim cmd As New SqlCommand
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Try
+            con.Open()
+            cmd.Connection = con
+            cmd.CommandText = "insert into player values(" + TextBox1.Text + ",'" + TextBox2.Text + "','" + TextBox3.Text + "'," + TextBox4.Text + ")"
+            cmd.ExecuteNonQuery()
+            MessageBox.Show("Record saved successfuly")
+        Catch ex As Exception
+            MessageBox.Show("Error : " + ex.Message)
+        Finally
+            con.Close()
+        End Try
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Try
+            con.Open()
+            cmd.Connection = con
+            cmd.CommandText = "update player set no_of_matches=500 where pname='Rohit Sharma'"
+            cmd.ExecuteNonQuery()
+            MessageBox.Show("Record updated successfuly")
+        Catch ex As Exception
+            MessageBox.Show("Error : " + ex.Message)
+        Finally
+            con.Close()
+        End Try
+    End Sub
+End Class
+

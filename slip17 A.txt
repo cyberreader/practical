@@ -1,0 +1,31 @@
+Slip – 17 A
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string str;
+
+            Console.Write("Enter String : ");
+            str = Console.ReadLine();
+
+            Console.WriteLine("Vowels from the strings are : ");
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U' || str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u')
+                {
+                    Console.WriteLine(str[i]);
+                }
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
+

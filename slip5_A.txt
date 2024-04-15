@@ -1,0 +1,68 @@
+slip5_A
+
+Public Class Form1
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim a As Char
+
+        Dim str As String
+
+        a = TextBox1.Text
+
+ 
+
+        If (TextBox1.Text.Length <= 1) Then
+
+            If Char.IsUpper(a) Then
+
+                str = "Upper Case"
+
+            Else
+
+                str = "Lower Case"
+
+            End If
+
+            If (a = "a" Or a = "e" Or a = "i" Or a = "o" Or a = "u" Or
+
+                a = "A" Or a = "E" Or a = "I" Or a = "O" Or a = "U") Then
+
+                MessageBox.Show(TextBox1.Text & " is " & str & " Vowel")
+
+            Else
+
+                MessageBox.Show(TextBox1.Text & " is " & str & " Consonant")
+
+            End If
+
+        End If
+
+    End Sub
+
+ 
+
+    Private Sub TextBox1_Leave(sender As Object, e As EventArgs) Handles TextBox1.Leave
+
+        Dim a As String
+
+        a = TextBox1.Text
+
+        If (TextBox1.Text.Length > 1) Then
+
+            Label2.Text = "Only One Characters Allowed...!"
+
+        Else
+
+            Label2.Text = ""
+
+        End If
+
+ 
+
+    End Sub
+
+End Class
+
+ 
+

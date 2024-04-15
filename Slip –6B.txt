@@ -1,0 +1,43 @@
+ slip 6 B
+Imports System.Data
+Imports System.Data.SqlClient
+
+Public Class Form1
+    Dim con As New SqlConnection("Data Source=.\sqlexpress;Initial Catalog=demo;Integrated Security=True")
+    Dim cmd As New SqlCommand
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Try
+            con.Open()
+            cmd.Connection = con
+            cmd.CommandText = "insert into movie values('" + TextBox1.Text + "','" + TextBox2.Text + "'," + TextBox3.Text + ")"
+            cmd.ExecuteNonQuery()
+            MessageBox.Show("Record inserted successfully")
+            TextBox1.Text = ""
+            TextBox2.Text = ""
+            TextBox3.Text = ""
+            TextBox1.Focus()
+        Catch ex As Exception
+            MessageBox.Show("Error : " + ex.Message)
+        Finally
+            con.Close()
+        End Try
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Try
+            con.Open()
+            cmd.Connection = con
+            cmd.CommandText = "delete from movie where rel_year=2022"
+            cmd.ExecuteNonQuery()
+            MessageBox.Show("Record deleted successfully")
+            TextBox1.Focus()
+        Catch ex As Exception
+            MessageBox.Show("Error : " + ex.Message)
+        Finally
+            con.Close()
+        End Try
+    End Sub
+End Class
+
+

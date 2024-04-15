@@ -1,0 +1,8 @@
+slip 4 A
+
+Private Sub DateTimePicker1_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DateTimePicker1.ValueChanged
+        TextBox1.Text = DateTimePicker1.Value.Day
+        TextBox2.Text = DateTimePicker1.Value.Month
+        TextBox3.Text = DateTimePicker1.Value.Year
+    End Sub
+

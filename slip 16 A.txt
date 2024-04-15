@@ -1,0 +1,13 @@
+slip 16 A
+protected void Button1_Click(object sender, EventArgs e)
+    {
+        if (TextBox1.Text == "DYP" && TextBox2.Text == "Primpri")
+        {
+            //Label1.Text = "Login Successful";
+            Response.Write("<script>alert('Login Successful');</script>");
+        }
+        else
+        {
+            Label1.Text = "Login Unsuccessful";
+        }
+    }

@@ -1,0 +1,13 @@
+slip 19 A 
+Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim str As String = TextBox1.Text
+        str = StrReverse(str)
+
+        If TextBox1.Text = str Then
+            MessageBox.Show("String is Palindrome")
+        Else
+            MessageBox.Show("String is not Palindrome")
+        End If
+    End Sub
+
+

@@ -1,0 +1,39 @@
+Slip – 2A
+
+Public Class Form1
+
+    Dim x As Integer = 0
+    Dim y As Integer = 50
+
+    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
+        Label1.Location = New Point(x, y)
+        x = x + 10
+        If x > Me.Width - Label1.Width Then
+            Timer1.Enabled = False
+            Timer2.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Timer2_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer2.Tick
+        Label1.Location = New Point(x, y)
+        x = x - 10
+        If x < 0 Then
+            Timer2.Enabled = False
+            Timer1.Enabled = True
+        End If
+    End Sub
+
+    
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim str As String = TextBox1.Text
+        str = StrReverse(str)
+
+        If TextBox1.Text = str Then
+            MessageBox.Show("String is Palindrome")
+        Else
+            MessageBox.Show("String is not Palindrome")
+        End If
+    End Sub
+End Class
+
+

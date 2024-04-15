@@ -1,0 +1,93 @@
+Imports System
+
+Imports System.Data
+
+Imports System.Data.OleDb
+
+ 
+
+Public Class Form1
+
+    Dim con As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Saurabh\Desktop\New folder\movie.accdb")
+
+    Dim adpt As New OleDbDataAdapter("Select * from movie", con)
+
+    Dim cmd As New OleDbCommand
+
+    Dim ds As New DataSet
+
+    Public Function display()
+
+        adpt.Fill(ds, "movie")
+
+        DataGridView1.DataSource = ds
+
+        DataGridView1.DataMember = "movie"
+
+        Return ds
+
+    End Function
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        display()
+
+    End Sub
+
+ 
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        cmd.Connection = con
+
+        cmd.CommandType = CommandType.Text
+
+        cmd.CommandText = "insert into movie values('" & TextBox1.Text & "'," & TextBox2.Text & ",'" & TextBox3.Text & "')"
+
+        con.Open()
+
+ If cmd.ExecuteNonQuery() Then
+
+            MessageBox.Show("Inserted Successfully...!")
+
+        End If
+
+ 
+
+        con.Close()
+
+        ds.Clear()
+
+        display()
+
+    End Sub
+
+ 
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        cmd.Connection = con
+
+        cmd.CommandType = CommandType.Text
+
+        cmd.CommandText = "DELETE FROM movie WHERE Release_year = " & TextBox2.Text
+
+        con.Open()
+
+  If cmd.ExecuteNonQuery() Then
+
+             MessageBox.Show("Deleted Successfully...!")
+
+         End If
+
+ 
+
+        con.Close()
+
+        ds.Clear()
+
+        display()
+
+    End Sub
+
+End Class

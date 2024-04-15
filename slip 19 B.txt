@@ -1,0 +1,57 @@
+slip 19 B
+using System;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+
+public partial class _Default : System.Web.UI.Page 
+{
+    float per;
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    
+    protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
+    {
+        Session["tot"] = Convert.ToInt32(Session["tot"]) + 1;
+        Session["good"] = Convert.ToInt32(Session["good"]) + 1;
+        per = 100 * Convert.ToInt32(Session["good"]) / Convert.ToInt32(Session["tot"]);
+        Label2.Text = per.ToString();
+        per = 100 * Convert.ToInt32(Session["sat"]) / Convert.ToInt32(Session["tot"]);
+        Label4.Text = per.ToString();
+        per = 100 * Convert.ToInt32(Session["bad"]) / Convert.ToInt32(Session["tot"]);
+        Label6.Text = per.ToString();
+    }
+
+    protected void RadioButton2_CheckedChanged(object sender, EventArgs e)
+    {
+        Session["tot"] = Convert.ToInt32(Session["tot"]) + 1;
+        Session["sat"] = Convert.ToInt32(Session["sat"]) + 1;
+        per = 100 * Convert.ToInt32(Session["good"]) / Convert.ToInt32(Session["tot"]);
+        Label2.Text = per.ToString();
+        per = 100 * Convert.ToInt32(Session["sat"]) / Convert.ToInt32(Session["tot"]);
+        Label4.Text = per.ToString();
+        per = 100 * Convert.ToInt32(Session["bad"]) / Convert.ToInt32(Session["tot"]);
+        Label6.Text = per.ToString();
+    }
+    protected void RadioButton3_CheckedChanged(object sender, EventArgs e)
+    {
+        Session["tot"] = Convert.ToInt32(Session["tot"]) + 1;
+        Session["bad"] = Convert.ToInt32(Session["bad"]) + 1;
+        per = 100 * Convert.ToInt32(Session["good"]) / Convert.ToInt32(Session["tot"]);
+        Label2.Text = per.ToString();
+        per = 100 * Convert.ToInt32(Session["sat"]) / Convert.ToInt32(Session["tot"]);
+        Label4.Text = per.ToString();
+        per = 100 * Convert.ToInt32(Session["bad"]) / Convert.ToInt32(Session["tot"]);
+        Label6.Text = per.ToString();
+    }
+}

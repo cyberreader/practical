@@ -1,0 +1,73 @@
+Slip – 13B
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication4
+{
+    class Student
+    {
+        int rno;
+        string name;
+        int s1, s2, s3, tot;
+        float per;
+
+        public void accept()
+        {
+            Console.WriteLine("Enter Student Details : ");
+            Console.Write("Roll No : ");
+            rno = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Name : ");
+            name = Console.ReadLine();
+            Console.Write("Sub. 1 Marks : ");
+            s1 = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Sub. 2 Marks : ");
+            s2 = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Sub. 3 Marks : ");
+            s3 = Convert.ToInt32(Console.ReadLine());
+            tot = s1 + s2 + s3;
+            per = tot / 3;
+        }
+
+        public void display()
+        {
+            Console.WriteLine("Student Details : ");
+            Console.WriteLine("Roll No : "+rno);
+            Console.WriteLine("Name : "+name);
+            Console.WriteLine("Sub. 1 Marks : "+s1);
+            Console.WriteLine("Sub. 2 Marks : "+s2);
+            Console.WriteLine("Sub. 3 Marks : "+s3);
+            Console.WriteLine("Total Marks : " + tot);
+            Console.WriteLine("Per. Marks : " + per);
+        }
+
+        static void Main(string[] args)
+        {
+            int n,i;
+            
+            Console.WriteLine("Enter No. of Students : ");
+            n = Convert.ToInt32(Console.ReadLine());
+            
+            Student []s = new Student[n];
+
+            for (i = 0; i < n; i++)
+            {
+                s[i] = new Student();
+                s[i].accept();
+            }
+
+            for (i = 0; i < n; i++)
+            {
+                s[i].display();
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
+
+
+
+

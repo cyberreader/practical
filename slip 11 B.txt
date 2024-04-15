@@ -1,0 +1,75 @@
+Slip 11B
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication3
+{
+    class Fruit
+    {
+        static protected int cnt = 0;
+
+        static public void count()
+        {
+            Console.WriteLine("Total Fruits are : " + cnt);
+        }
+    }
+
+    class Mango : Fruit
+    {
+        static int mcnt = 0;
+
+        public void buy()
+        {
+            mcnt++;
+            cnt++;
+        }
+
+        public void mango_cnt()
+        {
+            Console.WriteLine("Total Mangoes are : " + mcnt);
+        }
+    }
+
+    class Apple : Fruit
+    {
+        static int acnt = 0;
+
+        public void buy()
+        {
+            acnt++;
+            cnt++;
+        }
+
+        public void apple_cnt()
+        {
+            Console.WriteLine("Total Apples are : " + acnt);
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Mango m = new Mango();
+            Apple a = new Apple();
+
+            m.buy();
+            m.buy();
+            a.buy();
+            a.buy();
+            a.buy();
+            a.buy();
+
+            m.mango_cnt();
+            a.apple_cnt();
+            Fruit.count();
+
+            Console.ReadKey();
+        }
+    }
+}
+
+
